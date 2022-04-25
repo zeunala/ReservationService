@@ -19,4 +19,16 @@ public class ReservationController {
 	public String mainpage() {
 		return "mainpage";
 	}
+
+	@GetMapping(path="/detail")
+	public String detail() {
+
+		return "detail";
+	}
+
+	@GetMapping(path="/review")
+	public String review() {
+
+		return "review";
+	}
 }
