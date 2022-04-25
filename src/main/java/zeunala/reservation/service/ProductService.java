@@ -1,33 +1,20 @@
 package zeunala.reservation.service;
 
+import zeunala.reservation.dto.*;
+
 import java.util.List;
 
-import zeunala.reservation.dao.ProductDao;
-import zeunala.reservation.dto.Product;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-@Service
-public class ProductService {
-	public static final Integer COUNT = 4;
-	
-	@Autowired
-	ProductDao productDao;
-	
-	public List<Product> getSomeProducts(Integer start) {
-		return productDao.selectSome(start, COUNT);
-	}
-	
-	public List<Product> getSomeProductsByCategory(Integer category, Integer start) {
-		return productDao.selectSomeByCategory(category, start, COUNT);
-	}
-	
-	public Integer getCount() {
-		return productDao.selectCount();
-	}
-	
-	public Integer getCountByCategory(Integer category) {
-		return productDao.selectCountByCategory(category);
-	}
-	
+public interface ProductService {
+	Integer COUNT = 4;
+	List<Product> getSomeProducts(Integer start);
+	List<Product> getSomeProductsByCategory(Integer category, Integer start);
+	Integer getCount();
+	Integer getCountByCategory(Integer category);
+	List<Comment> getComments(Integer displayInfoId);
+	List<CommentImage> getCommentImages(Integer displayInfoId);
+	Double getAverageScore(Integer displayInfoId);
+	DisplayInfo getDisplayInfo(Integer displayInfoId);
+	DisplayInfoImage getDisplayInfoImage(Integer displayInfoId);
+	List<ProductImage> getProductImages(Integer displayInfoId);
+	List<ProductPrice> getProductPrices(Integer displayInfoId);
 }
