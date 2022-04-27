@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
     <link th:href="@{/css/style.css}" href="../static/css/style.css" rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer th:src="@{/js/common.js}" src="../static/js/common.js"></script>
     <script defer th:src="@{/js/mainpage.js}" src="../static/js/mainpage.js"></script>
 </head>
 
@@ -14,10 +16,10 @@
     <div class="header">
         <header class="header_tit">
             <h1 class="logo">
-                <a href="https://m.naver.com/" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
-                <a href="./myreservation.html" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
+                <a href="#" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
+                <a href="#" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
             </h1>
-            <a href="./bookinglogin.html" class="btn_my"> <span class="viewReservation" title="예약확인">예약확인</span> </a>
+            <a href="#" class="btn_my"> <span class="viewReservation" title="예약확인">예약확인</span> </a>
         </header>
     </div>
     <hr>
@@ -145,7 +147,7 @@
 
 
 <script type="rv-template" id="promotionItem">
-    <li class="item" style="background-image: url({productImageUrl}); width: 100%;">
+    <li class="item" style="background-image: url({{productImageUrl}}); width: 100%;">
         <a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
             <div class="event_txt">
                 <h4 class="event_txt_tit"></h4>
@@ -158,14 +160,14 @@
 
 <script type="rv-template" id="itemList">
     <li class="item">
-        <a class="item_book">
+        <a class="item_book" href="detail?id={{displayInfoId}}">
             <div class="item_preview">
-                <img alt="{productDescription}" class="img_thumb" src="{productImageUrl}">
+                <img alt="{{productDescription}}" class="img_thumb" src="{{productImageUrl}}">
                 <span class="img_border"></span>
             </div>
             <div class="event_txt">
-                <h4 class="event_txt_tit"> <span>{productDescription}</span> <small class="sm">{placeName}</small> </h4>
-                <p class="event_txt_dsc">{productContent}</p>
+                <h4 class="event_txt_tit"> <span>{{productDescription}}</span> <small class="sm">{{placeName}}</small> </h4>
+                <p class="event_txt_dsc">{{productContent}}</p>
             </div>
         </a>
     </li>
