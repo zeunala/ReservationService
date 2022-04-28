@@ -1,14 +1,14 @@
 package zeunala.reservation.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import zeunala.reservation.dto.ProductByDisplayInfoId;
 import zeunala.reservation.dto.SomeProducts;
 import zeunala.reservation.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping(path="/api")
@@ -44,5 +44,17 @@ public class ProductApiController {
 		
 		return result;
 	}
-	
+
+	@GetMapping("/product-reservation-date/{displayInfoId}") // 해당 작품의 예약 가능일을 반환
+	public Map<String, String> productReservationDate(@PathVariable Integer displayInfoId) {
+		Calendar reservationDate = Calendar.getInstance();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy.M.d");
+		Random random = new Random();
+
+		reservationDate.setTime(new Date());
+
+		reservationDate.add(Calendar.DATE, random.nextInt(4)); // 오늘 포함해서 1~5일 중 랜덤으로 설정함
+
+		return Collections.singletonMap("reservationDate", dateFormat.format(reservationDate.getTime()));
+	}
 }
