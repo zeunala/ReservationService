@@ -19,7 +19,8 @@
                 <a href="#" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
                 <a href="#" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
             </h1>
-            <a href="#" class="btn_my"> <span class="viewReservation" title="예약확인">예약확인</span> </a>
+            <a th:if="${session.loginEmail}" th:text="${session.loginEmail}" href="./myreservation" class="btn_my"> <span class="viewReservation" title="예약확인">이메일</span> </a>
+            <a th:unless="${session.loginEmail}" href="./bookinglogin" class="btn_my"> <span class="viewReservation" title="예약확인">예약확인</span> </a>
         </header>
     </div>
     <hr>
@@ -146,7 +147,7 @@
 </footer>
 
 
-<script type="rv-template" id="promotionItem">
+<script type="rv-template" id="promotion_item">
     <li class="item" style="background-image: url({{productImageUrl}}); width: 100%;">
         <a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
             <div class="event_txt">
@@ -158,7 +159,7 @@
     </li>
 </script>
 
-<script type="rv-template" id="itemList">
+<script type="rv-template" id="item_list">
     <li class="item">
         <a class="item_book" href="detail?id={{displayInfoId}}">
             <div class="item_preview">

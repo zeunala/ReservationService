@@ -48,8 +48,6 @@ var ShowObj = {
 
 var EventObj = {
 	setEventListeners: function() {
-		CommonEventObj.setEventListeners();
-		
 		document.querySelector(".btn_back").href = "./detail?id=" + new URLSearchParams(location.search).get("id");
 	}
 }

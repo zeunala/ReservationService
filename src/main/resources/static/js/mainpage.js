@@ -17,7 +17,7 @@ var ProductObj = {
 
 		httpRequest.addEventListener("load", () => {
 			var data = JSON.parse(httpRequest.responseText);
-			var template = document.querySelector("#itemList").innerHTML;
+			var template = document.querySelector("#item_list").innerHTML;
 			var bindTemplate = Handlebars.compile(template);
 			
 			document.querySelector(".event_lst_txt > .pink").innerText = data.totalCount + "개";
@@ -79,7 +79,7 @@ var PromotionObj = {
 
 		httpRequest.addEventListener("load", () => {
 			var data = JSON.parse(httpRequest.responseText);
-			var template = document.querySelector("#promotionItem").innerHTML;
+			var template = document.querySelector("#promotion_item").innerHTML;
 			var bindTemplate = Handlebars.compile(template);
 			var parent = document.querySelector(".visual_img");
 
@@ -98,8 +98,6 @@ var PromotionObj = {
 
 var EventObj = {
 	setEventListeners: function() {
-		CommonEventObj.setEventListeners();
-
 		document.querySelector(".more > button").addEventListener("click", () => {
 			ProductObj.showProduct(ProductObj.getShowCategoryId()); // 선택한 탭 그대로인 상태에서 목록만 추가
 		});

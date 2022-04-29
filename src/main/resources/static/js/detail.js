@@ -154,8 +154,6 @@ var ChangeObj = {
 
 var EventObj = {
 	setEventListeners: function() {
-		CommonEventObj.setEventListeners();
-		
 		document.querySelector("._open").addEventListener("click", () => {
 			document.querySelector("._open").style.display = "none";
 			document.querySelector("._close").style.display = "block";
@@ -172,6 +170,9 @@ var EventObj = {
 		document.querySelector(".nxt").addEventListener("click", () => {
 			ChangeObj.changeTitleImage(1);
 		});
+		document.querySelector(".section_btn > button").addEventListener("click", () => {
+        	location.href = "./reserve?id={displayInfoId}".replace("{displayInfoId}", new URLSearchParams(location.search).get("id"));
+        });
 		document.querySelector(".info_tab_lst > ._detail").addEventListener("click", () => {
 			ChangeObj.changeTab(1);
 		});

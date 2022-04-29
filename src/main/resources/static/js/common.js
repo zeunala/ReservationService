@@ -23,3 +23,11 @@ var CommonEventObj = {
 		});
 	}
 }
+
+function initCommonConfig() {
+	CommonEventObj.setEventListeners();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+	initCommonConfig();
+});
