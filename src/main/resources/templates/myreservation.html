@@ -196,7 +196,11 @@
                         <!-- [D] 예약 신청중, 예약 확정 만 취소가능, 취소 버튼 클릭 시 취소 팝업 활성화 -->
                         <div class="booking_cancel"> <!-- 예약 항목 종류에 따라 바뀌는 항목 -->
                             <button class="btn" onclick="ShowObj.showReservationCancelPopup({{reservationInfoId}}, &quot;{{displayInfo.productDescription}}&quot;, &quot;{{#formattingDate reservationDate}} {{reservationDate}} {{/formattingDate}}&quot;);"><span>취소</span></button>
-                            <a href="./reviewWrite?id={{displayInfo.displayInfoId}}"><button class="btn"><span>예매자 리뷰 남기기</span></button></a> <!-- 링크 이동시 벡엔드에서 리뷰가능한 상태인지 한 번 더 체크 필요 -->
+                            <form name="idform{{reservationInfoId}}" action="./review_write" method="POST">
+                                <input type="hidden" name="displayid" value="{{displayInfo.displayInfoId}}" />
+                                <input type="hidden" name="reserveid" value="{{reservationInfoId}}" />
+                            </form>
+                            <a href="#" onclick="javascript:document.idform{{reservationInfoId}}.submit();"><button class="btn"><span>예매자 리뷰 남기기</span></button></a> <!-- 링크 이동시 벡엔드에서 리뷰가능한 상태인지 한 번 더 체크 필요 -->
                         </div>
                     </div>
                 </div>
