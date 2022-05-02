@@ -3,14 +3,8 @@ package zeunala.reservation.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zeunala.reservation.dao.DisplayInfoDao;
-import zeunala.reservation.dao.ReservationDao;
-import zeunala.reservation.dao.ReservationPriceDao;
-import zeunala.reservation.dao.ReservationResultDao;
-import zeunala.reservation.dto.Reservation;
-import zeunala.reservation.dto.ReservationParam;
-import zeunala.reservation.dto.ReservationPrice;
-import zeunala.reservation.dto.ReservationResult;
+import zeunala.reservation.dao.*;
+import zeunala.reservation.dto.*;
 import zeunala.reservation.service.ReservationService;
 
 import java.util.List;
@@ -29,7 +23,16 @@ public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired
 	DisplayInfoDao displayInfoDao;
-	
+
+	@Autowired
+	CommentDao commentDao;
+
+	@Autowired
+	CommentImageDao commentImageDao;
+
+	@Autowired
+	CommentResultDao commentResultDao;
+
 	private boolean checkReservationValid(ReservationParam reservationParam) { // Reservation을 Dao로 추가하기 전 유효성을 한 번 더 검증함
 		if (reservationParam.getPrices() != null
 				&& reservationParam.getPrices().size() > 0
@@ -77,6 +80,23 @@ public class ReservationServiceImpl implements ReservationService{
 	public ReservationResult cancelReservation(Integer reservationId) {
 		reservationDao.cancelReservation(reservationId);
 		return getReservationResult(reservationId);
+	}
+
+	private CommentResult getCommentResult(Integer commentId) {
+		CommentResult result = commentResultDao.selectCommentResult(commentId);
+		result.setCommentImage(commentImageDao.selectCommentImage(commentId));
+		return result;
+	}
+
+	@Override
+	@Transactional
+	public CommentResult addComment(Integer reservationId, String comment, Integer productId, Double score, String imageFileName) {
+		int commentId = commentDao.addComment(reservationId, comment, productId, score);
+		if (imageFileName != null) {
+			int fileId = commentDao.addFileInfo(imageFileName);
+			commentDao.addCommentImage(reservationId, commentId, fileId);
+		}
+		return getCommentResult(commentId);
 	}
 	
 }
