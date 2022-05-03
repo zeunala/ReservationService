@@ -6,6 +6,7 @@
 	- Java 11, HTML5, CSS3, JavaScript(ES6)
 	- Spring Boot (v2.6.7)
 	- MySQL (v8.0.28)
+- 정적 html과 css파일, 이미지파일은 boostcourse에서 제공하는 자료를 이용하였습니다.
 
 ### 메인화면 
 <img src="https://user-images.githubusercontent.com/79515820/166508779-c3530790-d992-469c-841b-ba25c418f26c.png" width="60%"/>
